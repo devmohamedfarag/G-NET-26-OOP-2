@@ -102,3 +102,27 @@
 
 #endregion
 
+#region Question04:
+/*
+ public class Order
+{
+    public static int TotalOrders = 0;
+    public string Item;
+
+    public Order(string item)
+    {
+        Item = item;
+        TotalOrders++;
+    }
+}
+ */
+// a)  What does the `static` keyword mean on `TotalOrders`? How is it different from the `Item` field?
+// Answer: The `static` keyword means that `TotalOrders` belongs to the class itself rather than to any specific instance of the class.
+//         This means that there is only one copy of `TotalOrders` shared among all instances of the `Order` class.
+//         In contrast, the `Item` field is an instance member, meaning that each instance of the `Order` class has its own separate copy of the `Item` field.
+//         When a new `Order` is created, it increments the shared `TotalOrders` count, while each order can have its own unique item.
+
+
+//b) Can a static method inside `Order` access the `Item` field directly? Why or why not?
+// Answer: No, a static method inside the `Order` class cannot access the `Item` field directly because `Item` is an instance member, and static methods do not have access to instance members.
+#endregion 
