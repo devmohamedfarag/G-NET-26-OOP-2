@@ -55,3 +55,50 @@
 }
  */
 #endregion
+
+#region Question03:
+/*
+ public class StudentRegister
+{
+    private string[] names = new string[5];
+
+    public string this[int index]
+    {
+        get { return names[index]; }
+        set { names[index] = value; }
+    }
+}
+ */
+
+//a) What is `this[int index]` called? Explain its purpose.
+// Answer: `this[int index]` is called an indexer in C#.
+//         It allows instances of the StudentRegister class to be indexed like an array.
+//         The purpose of the indexer is to provide a way to access and modify the elements of the names array using an index, making it easier to work with collections of data without exposing the underlying array directly.
+
+//b) What happens if someone writes `register[10] = "Ali";` ? How would you make the indexer safer?
+// Answer: If someone writes `register[10] = "Ali";`, it will throw an `IndexOutOfRangeException` because the index 10 is out of bounds for the names array, which has a length of 5.
+
+//C) Can a class have more than one indexer? If yes, give an example of when that would be useful.
+// Answer: Yes, a class can have more than one indexer in C#.
+//         This can be useful when you want to provide different ways to access the data in the class.
+//         For example, you could have one indexer that allows access by integer index and another that allows access by string key:
+/*
+ public class StudentRegister
+{
+    private string[] names = new string[5];
+    private Dictionary<string, int> nameToIndex = new Dictionary<string, int>();
+    public string this[int index]
+    {
+        get { return names[index]; }
+        set { names[index] = value; }
+    }
+    public int this[string name]
+    {
+        get { return nameToIndex[name]; }
+        set { nameToIndex[name] = value; }
+    }
+}
+ */
+
+#endregion
+
