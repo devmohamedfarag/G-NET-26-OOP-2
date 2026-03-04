@@ -25,3 +25,33 @@
 //         And No validation possible that we can not control values that are being assigned to the fields.
 
 #endregion
+
+#region Question02:
+َ// Q01: What is the difference between a field and a property in C#? Can a property contain logic? Give an example of a read-only property that returns a calculated value.
+
+// Answer: A field is a variable that is declared directly in a class or struct and can be accessed directly.
+//         A property, on the other hand, is a member that provides a flexible mechanism to read, write, or compute the value of a private field.
+//         Properties can contain logic in their get and set accessors, allowing for validation, transformation, or other operations when getting or setting values.
+// Example of a read-only property that returns a calculated value:
+/*
+ public class Person
+{
+    private readonly string _firstName;
+    private readonly string _lastName;
+
+    public Person(string firstName, string lastName)
+    {
+        _firstName = firstName;
+        _lastName = lastName;
+    }
+
+    public string FullName
+    {
+        get
+        {
+            return $"{_firstName} {_lastName}";
+        }
+    }
+}
+ */
+#endregion
