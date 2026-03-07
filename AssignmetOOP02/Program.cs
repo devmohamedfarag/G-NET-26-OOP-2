@@ -27,7 +27,7 @@
 #endregion
 
 #region Question02:
-َ// Q01: What is the difference between a field and a property in C#? Can a property contain logic? Give an example of a read-only property that returns a calculated value.
+// Q01: What is the difference between a field and a property in C#? Can a property contain logic? Give an example of a read-only property that returns a calculated value.
 
 // Answer: A field is a variable that is declared directly in a class or struct and can be accessed directly.
 //         A property, on the other hand, is a member that provides a flexible mechanism to read, write, or compute the value of a private field.
@@ -126,3 +126,77 @@
 //b) Can a static method inside `Order` access the `Item` field directly? Why or why not?
 // Answer: No, a static method inside the `Order` class cannot access the `Item` field directly because `Item` is an instance member, and static methods do not have access to instance members.
 #endregion 
+
+
+#region Part02: 
+using AssignmetOOP02;
+class program
+{
+    static void Main()
+    {
+        Cinema cinema = new Cinema();
+
+        Console.WriteLine("========= Ticket Booking =========");
+
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine("\n Enter Data for Ticket " + (i + 1));
+
+            Console.Write("Please Enter the Movie Name: ");
+            string? movieName = Console.ReadLine();
+
+            Console.Write("Please Enter the Movie Type (0 = Standard, 1 = VIP, 2 = IMax): ");
+            int typeInput = int.Parse(Console.ReadLine());
+            TicketType type = (TicketType)typeInput;
+
+            Console.Write("Please Enter Saeat Row (A - Z): ");
+            char row = char.Parse(Console.ReadLine());
+
+            Console.Write("Please Enter Seat Number: ");
+            int number = int.Parse(Console.ReadLine());
+
+            Console.Write("Please Enter The Price: ");
+            double price = double.Parse(Console.ReadLine());
+
+            Ticket ticket = new Ticket(movieName, type, new SeatLoctaion(row, number), price);
+
+            cinema.AddTicket(ticket);
+        } 
+
+        Console.WriteLine("\n========= All Tickets =========\n");
+        
+        for(int i= 0; i< 3; i++)
+        {
+           Ticket ticket = cinema[i];
+           
+            Console.WriteLine($"Ticket #{ticket.TicketId} | {ticket.MovieName} | {ticket.Seat} | {ticket.Type} | {ticket.Price} EGP | After Tax {ticket.PriceAfterTax:F1} EGP");
+        }
+
+        Console.WriteLine("\n========= Search By Movie =========\n");
+
+        Console.Write("Please Enter Movie Name to Search: ");
+        string? searchMovieName = Console.ReadLine();
+
+        Ticket foundTicket = cinema.GetMovieByName(searchMovieName);
+        
+        if(foundTicket != null)
+        {
+            Console.WriteLine($"Found Ticket: #{foundTicket.TicketId} | {foundTicket.MovieName} | {foundTicket.Seat} | {foundTicket.Type} | {foundTicket.Price} EGP | After Tax {foundTicket.PriceAfterTax:F1} EGP");
+        }
+        else
+        {
+            Console.WriteLine("No ticket found for the specified movie.");
+        }
+
+        Console.WriteLine("\n============== Statistics ===============\n");
+
+        Console.WriteLine($"Total Tickets Sold: {Ticket.GetTotalTicketsSold()}\n");
+
+        Console.WriteLine($"Booking Regerence 1: {BookingHelper.GenerateBookingReference()}");
+        Console.WriteLine($"Booking Regerence 2: {BookingHelper.GenerateBookingReference()}");
+
+        double groupPrice = BookingHelper.CalcGroupDiscount(5, 80);
+        Console.WriteLine($"\nGroup Discount (5 tickets x 80 EGP): {groupPrice} EGP (10% off applied)");
+    }
+}
+#endregion
